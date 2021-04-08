@@ -1,0 +1,21 @@
+$(function() {
+	$("#mb-up").click(function(){
+		$("html, body").animate({ 
+			scrollTop: $("body").offset().top - 30 
+		}, 1250);
+	});
+	
+	$('#navcontent h3.mb-dropdown a').click(function(e){
+		e.preventDefault();
+		var div = $(this).attr("href");
+		$("#navcontent h3 a").removeClass('active');
+		$(this).addClass('active');
+		$('#navcontent .col-sm-7').addClass('vhidden');
+		$(div).removeClass('vhidden');
+	});
+	
+	$('.mb-menu').click(function(){
+		$("#navcontent").fadeToggle();
+		$(this).toggleClass('opened');
+	});
+});

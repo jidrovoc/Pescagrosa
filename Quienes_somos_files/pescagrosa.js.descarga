@@ -1,0 +1,10 @@
+$(function() {
+	$('#somos a').click(function(e){	
+		e.preventDefault();
+		var page = $(this).attr('href').split('#');
+		$('.mb-menu').click();
+		$("html, body").animate({ 
+			scrollTop: $('#' + page[page.length - 1]).offset().top
+		}, 1250);
+	});
+});
