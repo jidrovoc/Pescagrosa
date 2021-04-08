@@ -1,0 +1,117 @@
+function initMap() {
+	var cimage = {
+		url: '../img/pin.png'
+	};
+	
+	var pescaPos = {lat: -2.1801807, lng: -79.8783852};
+	
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 6,
+		center: pescaPos,
+		scrollwheel: false,
+	});
+	
+	
+	var cmarker = new google.maps.Marker({
+		position: pescaPos,
+		map: map,
+		icon: cimage,
+		title: 'Pescagrosa'
+	});	  
+	
+	// form validation
+	
+	$('.btn-pesc').submit(function(){
+		$("#mb-contacto").submit();	
+	});
+	
+	$("#mb-contacto").submit(function(){
+
+		
+		var name = $('#name');
+		var lastname = $('#lastname');
+		var email   = $("#email").val();		
+		var atPos   = email.indexOf("@");
+		var dotPos  = email.lastIndexOf(".");		
+		var telefono = $('#telefono');
+		var country = $('#country');
+		var reason = $('#reason');
+		var mensaje = $('#mensaje');		
+		
+		if(name.val() == null || name.val() == '') {
+			showTool(name, 'Por favor ingrese su nombre');
+			name.focus();
+			return false;
+		}
+		
+		if(lastname.val() == null || lastname.val() == '') {
+			showTool(lastname, 'Por favor ingrese su apellido');	
+			lastname.focus();
+			return false;
+		}
+		
+		if(atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= email.length) {
+			showTool($("#email"), "Este correo no es válido");
+			$("#email").val("");
+			$("#email").focus();
+			return false;
+		}
+		
+		if(telefono.val() == null || telefono.val() == '') {
+			showTool(telefono, "Ingrese su teléfono");
+			telefono.focus();
+			return false;			
+		}
+		
+		if(isNaN(telefono.val())) {
+			showTool(telefono, "Ingrese un teléfono válido");
+			telefono.focus();
+			return false;						
+		}
+		
+		if(country.val() == null || country.val() == '') {
+			showTool(country, "Seleccione un país");
+			country.focus();
+			return false;			
+		}
+		
+		if(reason.val() == null || reason.val() == '') {
+			showTool(reason, "Seleccione un motivo");
+			reason.focus();
+			return false;			
+		}
+		
+		if(mensaje.val() == null || mensaje.val() == '') {
+			showTool(mensaje, "Por favor ingrese un mensaje");
+			mensaje.focus();
+			return false;						
+		}
+
+	});
+	
+	function showTool(sel, mes) {
+		$("#tool").remove();
+		
+		var pos = sel.offset();
+		var posTop = pos.top;
+				
+		$('<div id="tool" />')
+		.hide()
+		.appendTo('body')
+		.text(mes)
+		.css({
+			top: posTop - 50,
+			left: (((sel.offset().left + ($('#tool').outerWidth() / 2))) + ( sel.outerWidth() / 2 )) - ($('#tool').outerWidth() / 2) + 'px',
+			marginLeft: '-' + ($("#tool").outerWidth() / 2) + 'px'
+		})
+		.fadeIn(350);	
+	}
+	
+	$('body').on('click', function(e){
+		if(!$(e.target).hasClass('btn-pesc')) {
+			$("#tool").fadeOut(350);
+			$("#tool").remove();		
+		}
+	});
+
+}   
