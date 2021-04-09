@@ -1,0 +1,39 @@
+.produ{
+	position: absolute;
+	top: 38%;
+	left: 13%;
+}
+
+.produT{
+	position: absolute;
+	top: 40%;
+	left: 13%;
+	width: 282px;
+}
+
+
+.cali{
+	position: absolute;
+	top: 38%;
+	left: 38%;
+}
+
+.caliT{
+	position: absolute;
+	top: 40%;
+	left: 38%;
+	width: 282px;
+}
+
+.salu{
+	position: absolute;
+	top: 38%;
+	left: 860px;
+}
+
+.saluT{
+	position: absolute;
+	top: 730px;
+	left: 860px;
+	width: 305px;
+}
